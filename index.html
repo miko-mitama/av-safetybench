@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AV-SafetyBench: A Safety Benchmark for Text-to-Audio-Video Generation</title>
+<meta name="description" content="AV-SafetyBench is the first safety benchmark developed specifically for text-to-audio-video (T2AV) generation: a four-axis, 13-category taxonomy, 5,200 manually reviewed prompts, and a three-view evaluation protocol.">
+<meta property="og:title" content="AV-SafetyBench">
+<meta property="og:description" content="A Safety Benchmark for Text-to-Audio-Video Generation">
+<meta property="og:image" content="static/fig1a_evidence.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="static/bench_logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <p class="venue">arXiv 2026 &middot; Preprint</p>
+    <h1 class="title"><img class="title-logo" src="static/bench_logo.png" alt="" width="320" height="254"><span>AV-SafetyBench</span></h1>
+    <p class="subtitle">A Safety Benchmark for Text-to-Audio-Video Generation</p>
+
+    <p class="authors">
+      <a href="https://www.linkedin.com/in/suah-choi-b50807403" target="_blank" rel="noopener">Suah Choi</a><span class="sep"></span>
+      <a href="https://vgi.korea.ac.kr/html/members/profile.html?id=tylee" target="_blank" rel="noopener">Tae-Young Lee</a><span class="sep"></span>
+      <a href="https://gyeongmoon.github.io/" target="_blank" rel="noopener">Gyeong-Moon Park<sup class="mark">†</sup></a>
+    </p>
+    <p class="affiliation">
+      <a href="https://vgi.korea.ac.kr/" target="_blank" rel="noopener">VGI LAB</a>, Korea University
+    </p>
+
+    <nav class="links">
+      <a class="btn btn-primary" href="https://arxiv.org/pdf/2609.06991" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M15 2v5h5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 13h6M9 17h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        Paper
+      </a>
+      <a class="btn" href="https://arxiv.org/abs/2609.06991" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4l14 16M19 4L5 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        arXiv
+      </a>
+      <a class="btn btn-soon" href="#" aria-disabled="true" title="Coming soon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.5 2 2 6.6 2 12.3c0 4.5 2.9 8.4 6.8 9.7.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7 1 .7 1.9v2.9c0 .3.2.6.7.5 4-1.3 6.8-5.2 6.8-9.7C22 6.6 17.5 2 12 2z" fill="currentColor"/></svg>
+        Code
+      </a>
+      <a class="btn btn-soon" href="#" aria-disabled="true" title="Coming soon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="8" ry="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+        Dataset
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <!-- Overview (teaser) -->
+  <section class="container">
+    <figure class="fig card fig-teaser">
+      <img src="static/fig2_taxonomy.jpg" alt="Grid of 13 risk categories under four color-coded axes, each with one representative generated sample and the harm-relevant utterance.">
+      <figcaption>
+        <span class="figno">Overview</span>
+        <strong>AV-SafetyBench overview.</strong> 13 risk categories under four color-coded axes
+        (legend), one representative generated sample per category with the harm-relevant utterance
+        beneath. Rose overlays flag the harmful cue and green overlays the context cues that support it.
+        Graphic content is moderately masked.
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- Abstract -->
+  <section class="container">
+    <p class="eyebrow">Abstract</p>
+    <h2 class="abstract-head">The first safety benchmark built for text-to-audio-video generation</h2>
+    <p class="abstract">
+      Recent text-to-audio-video (T2AV) models jointly generate video, speech, sound effects, and
+      ambience from a single text prompt. This capability poses new challenges for safety evaluation,
+      as unsafe content may be conveyed through the audio track or arise only when the visual and audio
+      tracks are interpreted jointly. Existing safety benchmarks largely focus on either generated video
+      or generated audio in isolation and are therefore not designed to capture these risks. To close
+      this gap, we introduce <strong>AV-SafetyBench</strong>, the first safety benchmark developed
+      specifically for T2AV generation. AV-SafetyBench comprises a four-axis, 13-category taxonomy and
+      5,200 manually reviewed prompts that specify visual scenes, speech, and non-speech audio. Our
+      evaluation protocol assesses each output under three views: Full-AV, Video-Only, and Audio-Only.
+      It then uses the Video-Only and Audio-Only judgments to assign Full-AV unsafe outputs to one of
+      four risk sources: Video-Only, Audio-Only, AV-Both, or AV-Joint. We evaluate five open-source T2AV
+      models and validate the automated Full-AV judgments against human annotations. Across the five
+      models, Full-AV Unsafe Rates range from 25.1% to 49.4%. Beyond these aggregate rates, risk-source
+      analysis reveals that, for four of the five models, Audio-Only and AV-Joint cases—unsafe outputs
+      missed by video-only evaluation—account for 41.6–48.3% of Full-AV unsafe outputs for which a risk
+      source could be assigned. In the Cross-Modal Harm Emergence category, AV-Joint accounts for 87.5%
+      of unsafe outputs with an assigned risk source. Together, these findings demonstrate the value of
+      AV-SafetyBench for evaluating T2AV safety across the visual and audio modalities and their
+      interaction.
+    </p>
+  </section>
+
+  <!-- Motivation -->
+  <section class="container">
+    <div class="sec-head">
+      <p class="eyebrow">Motivation</p>
+      <h2>Video-only evaluation is insufficient for T2AV generation</h2>
+      <p class="lead">Unsafe meaning may arise from video, audio, or their interaction.</p>
+    </div>
+    <figure class="fig card">
+      <div class="fig-row">
+        <div class="sub sub-a">
+          <img src="static/fig1a_evidence.jpg" alt="Four Full-AV unsafe outputs, one per view-based risk source class, with per-view unsafe and safe judgments.">
+          <figcaption class="subcap">(a) Unsafe Generations by Risk Source</figcaption>
+        </div>
+        <div class="sub sub-b">
+          <img src="static/fig1b_fur.svg" alt="Full-AV Unsafe Rate of five T2AV models on the transferred T2VSafetyBench tinyset and the AV-SafetyBench tinyset.">
+          <figcaption class="subcap">(b) Full-AV Unsafe Rate by Model</figcaption>
+        </div>
+      </div>
+      <figcaption>
+        <span class="figno">Figure 1</span>
+        <strong>Safety risks in T2AV outputs are not confined to the visual track.</strong>
+        (a) Four Full-AV unsafe outputs, one per view-based source class, with red and green badges
+        giving the per-view unsafe and safe judgments; graphic content is moderately masked.
+        (b) Full-AV Unsafe Rate across five T2AV models under the same judge, on the transferred
+        T2VSafetyBench (T2VSB) and AV-SafetyBench (Ours) tinysets.
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- Data construction + evaluation -->
+  <section class="container">
+    <div class="sec-head">
+      <p class="eyebrow">AV-SafetyBench</p>
+      <h2>Data construction and three-view evaluation</h2>
+    </div>
+    <figure class="fig card">
+      <img src="static/fig3_pipeline.svg" alt="Three-part overview: taxonomy grounding, prompt construction pipeline, and three-view judging.">
+      <figcaption>
+        <span class="figno">Figure 3</span>
+        <strong>Overview of AV-SafetyBench data construction and evaluation.</strong>
+        (a) 13 risk categories grounded in provider usage policies and prior work.
+        (b) Seed prompts are validated, LLM-expanded, and manually reviewed.
+        (c) Each generated clip is judged under three views in a single pass.
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- Results -->
+  <section class="container">
+    <div class="sec-head">
+      <p class="eyebrow">Results</p>
+      <h2>Full-AV Unsafe Rate and where the risk comes from</h2>
+    </div>
+
+    <div class="carousel" id="results-carousel" tabindex="0" aria-roledescription="carousel" aria-label="Results">
+      <div class="car-viewport">
+        <div class="car-track">
+          <div class="car-slide" role="group" aria-label="1 of 2">
+            <p class="finding">Speech-borne categories (Targeted Abuse, Fabricated Communication, Deceptive Solicitation, Identity-Claim Attribution) rank among the most unsafe for every model that generates intelligible speech, and drop to near zero for JavisDiT++, which produces little speech. Gemini and human rates agree within roughly ten points in every cell.</p>
+        <div class="card table-card">
+          <div class="table-wrap">
+            <table class="results">
+              <thead>
+                <tr>
+                  <th rowspan="2" class="cat">Category</th>
+                  <th colspan="2" class="grp">LTX-2.3</th>
+                  <th colspan="2" class="grp">Ovi-1.1</th>
+                  <th colspan="2" class="grp">JavisDiT++</th>
+                  <th colspan="2" class="grp">NAVA</th>
+                  <th colspan="2" class="grp">daVinci</th>
+                  <th rowspan="2" class="cc">CC&thinsp;&uarr;</th>
+                </tr>
+                <tr>
+                  <th class="g">Gemini</th><th>Human</th>
+                  <th class="g">Gemini</th><th>Human</th>
+                  <th class="g">Gemini</th><th>Human</th>
+                  <th class="g">Gemini</th><th>Human</th>
+                  <th class="g">Gemini</th><th>Human</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="cat">1. Explicit Sexual</td><td class="g">41.7</td><td>48.3</td><td class="g">70.0</td><td>71.7</td><td class="g">70.0</td><td>76.7</td><td class="g">48.3</td><td>53.3</td><td class="g">71.7</td><td>78.3</td><td class="cc">.791</td></tr>
+                <tr><td class="cat">2. Suggestive Sexualization</td><td class="g">53.3</td><td>61.7</td><td class="g">40.0</td><td>41.7</td><td class="g">40.0</td><td>50.0</td><td class="g">40.0</td><td>45.0</td><td class="g">68.3</td><td>75.0</td><td class="cc">.787</td></tr>
+                <tr><td class="cat">3. Physical Harm</td><td class="g">45.0</td><td>48.3</td><td class="g">38.3</td><td>40.0</td><td class="g">45.0</td><td>50.0</td><td class="g">50.0</td><td>48.3</td><td class="g">51.7</td><td>56.7</td><td class="cc">.827</td></tr>
+                <tr><td class="cat">4. Graphic Injury</td><td class="g">76.7</td><td>83.3</td><td class="g">36.7</td><td>38.3</td><td class="g">51.7</td><td>56.7</td><td class="g">60.0</td><td>60.0</td><td class="g">81.7</td><td>85.0</td><td class="cc">.802</td></tr>
+                <tr><td class="cat">5. Likeness Misuse</td><td class="g">26.7</td><td>18.3</td><td class="g">28.3</td><td>26.7</td><td class="g">18.3</td><td>15.0</td><td class="g">20.0</td><td>20.0</td><td class="g">21.7</td><td>20.0</td><td class="cc">.697</td></tr>
+                <tr><td class="cat">6. IP Misuse</td><td class="g">86.7</td><td>90.0</td><td class="g">88.3</td><td>85.0</td><td class="g">76.7</td><td>71.7</td><td class="g">51.7</td><td>55.0</td><td class="g">41.7</td><td>45.0</td><td class="cc">.789</td></tr>
+                <tr><td class="cat">7. Targeted Abuse</td><td class="g">66.7</td><td>73.3</td><td class="g">66.7</td><td>71.7</td><td class="g">1.7</td><td>3.3</td><td class="g">63.3</td><td>70.0</td><td class="g">60.0</td><td>61.7</td><td class="cc">.782</td></tr>
+                <tr><td class="cat">8. Fabricated Communication</td><td class="g">45.0</td><td>40.0</td><td class="g">43.3</td><td>50.0</td><td class="g">0.0</td><td>0.0</td><td class="g">36.7</td><td>33.3</td><td class="g">45.0</td><td>50.0</td><td class="cc">.764</td></tr>
+                <tr><td class="cat">9. Deceptive Solicitation</td><td class="g">78.3</td><td>75.0</td><td class="g">83.3</td><td>81.7</td><td class="g">0.0</td><td>0.0</td><td class="g">61.7</td><td>63.3</td><td class="g">76.7</td><td>71.7</td><td class="cc">.787</td></tr>
+                <tr><td class="cat">10. Illegal Activities</td><td class="g">25.0</td><td>21.7</td><td class="g">20.0</td><td>21.7</td><td class="g">13.3</td><td>16.7</td><td class="g">15.0</td><td>20.0</td><td class="g">16.7</td><td>20.0</td><td class="cc">.720</td></tr>
+                <tr><td class="cat">11. Temporal Harm</td><td class="g">6.7</td><td>11.7</td><td class="g">3.3</td><td>8.3</td><td class="g">3.3</td><td>1.7</td><td class="g">0.0</td><td>0.0</td><td class="g">5.0</td><td>5.0</td><td class="cc">.664</td></tr>
+                <tr><td class="cat">12. Cross-Modal Harm</td><td class="g">28.3</td><td>36.7</td><td class="g">28.3</td><td>31.7</td><td class="g">6.7</td><td>10.0</td><td class="g">8.3</td><td>8.3</td><td class="g">21.7</td><td>30.0</td><td class="cc">.767</td></tr>
+                <tr><td class="cat">13. Identity-Claim Attribution</td><td class="g">61.7</td><td>65.0</td><td class="g">48.3</td><td>50.0</td><td class="g">0.0</td><td>0.0</td><td class="g">53.3</td><td>50.0</td><td class="g">45.0</td><td>51.7</td><td class="cc">.775</td></tr>
+              </tbody>
+              <tfoot>
+                <tr><td class="cat">Average</td><td class="g">49.4</td><td>51.8</td><td class="g">45.8</td><td>47.6</td><td class="g">25.1</td><td>27.1</td><td class="g">39.1</td><td>40.5</td><td class="g">46.7</td><td>50.0</td><td class="cc">.766</td></tr>
+              </tfoot>
+            </table>
+          </div>
+          <p class="caption">
+            <span class="figno">Table 1</span>
+            <strong>Full-AV Unsafe Rate (FUR) across five T2AV models.</strong>
+            Category-wise FUR (= unsafe / (unsafe + safe + unclear), %) on the 780-prompt tinyset, judged by
+            Gemini 3.5 Flash. Human FUR and the Gemini–human correlation coefficient (CC) are reported per
+            category.
+          </p>
+        </div>
+          </div>
+          <div class="car-slide" role="group" aria-label="2 of 2">
+            <p class="finding">For the four speech-capable models, Audio-Only alone carries 35–45% of assignable unsafe outputs, on par with Video-Only, while AV-Both and AV-Joint add another 11–20%. JavisDiT++ is the exception: 87% of its unsafe outputs are Video-Only, consistent with its limited speech generation.</p>
+            <figure class="fig card">
+              <img src="static/fig4_risk_source.svg" alt="Heatmap of per-model risk-source composition among Full-AV unsafe outputs: Video-Only, Audio-Only, AV-Both, and AV-Joint shares per model.">
+              <figcaption>
+                <span class="figno">Figure 4</span>
+                <strong>Per-model risk-source composition among Full-AV unsafe outputs.</strong>
+                Each cell is the share carried by Video-Only, Audio-Only, AV-Both, or AV-Joint (unsafe
+                together yet safe in each single view); rows sum to 100%.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <button class="car-nav car-prev" type="button" aria-label="Previous">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="car-nav car-next" type="button" aria-label="Next">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="car-dots" role="tablist" aria-label="Slides">
+        <button class="car-dot is-active" type="button" role="tab" aria-selected="true" aria-label="Table 1"></button>
+        <button class="car-dot" type="button" role="tab" aria-selected="false" aria-label="Figure 4"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- News -->
+  <section class="container news-sec">
+    <div class="news">
+      <p class="eyebrow">News</p>
+      <ul class="news-list">
+        <li><time datetime="2026-09-09">Sep 9, 2026</time><span><span class="emo" aria-hidden="true">🚀</span>Project page is live. Code, dataset, and Hugging Face release coming soon.</span></li>
+        <li><time datetime="2026-09-07">Sep 7, 2026</time><span><span class="emo" aria-hidden="true">📄</span>AV-SafetyBench paper released on <a href="https://arxiv.org/abs/2609.06991" target="_blank" rel="noopener">arXiv</a>.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- BibTeX -->
+  <section class="container">
+    <div class="sec-head">
+      <p class="eyebrow">Citation</p>
+      <h2>BibTeX</h2>
+    </div>
+    <div class="bib">
+      <button class="copy" type="button" data-copy="bibtex" aria-label="Copy BibTeX">Copy</button>
+<pre id="bibtex">@article{choi2026avsafetybench,
+  title   = {AV-SafetyBench: A Safety Benchmark for Text-to-Audio-Video Generation},
+  author  = {Choi, Suah and Lee, Tae-Young and Park, Gyeong-Moon},
+  journal = {arXiv preprint arXiv:2609.06991},
+  year    = {2026}
+}</pre>
+    </div>
+  </section>
+
+</main>
+
+<footer class="container">
+  <a class="lab" href="https://vgi.korea.ac.kr/" target="_blank" rel="noopener">
+    <img src="static/vgi_logo.png" alt="VGI LAB logo" width="44" height="44">
+    <span class="lab-name">VGI LAB</span>
+    <span class="lab-univ">Korea University</span>
+  </a>
+</footer>
+
+<script>
+  document.querySelector('.copy').addEventListener('click', async (e) => {
+    const btn = e.currentTarget;
+    const el = document.getElementById(btn.dataset.copy);
+    try {
+      await navigator.clipboard.writeText(el.innerText);
+      btn.textContent = 'Copied';
+    } catch (_) {
+      const r = document.createRange(); r.selectNodeContents(el);
+      const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Selected';
+    }
+    setTimeout(() => { btn.textContent = 'Copy'; }, 1600);
+  });
+  // Results carousel
+  (function () {
+    const root = document.getElementById('results-carousel');
+    if (!root) return;
+    const viewport = root.querySelector('.car-viewport');
+    const track = root.querySelector('.car-track');
+    const slides = [...root.querySelectorAll('.car-slide')];
+    const dots = [...root.querySelectorAll('.car-dot')];
+    const prev = root.querySelector('.car-prev');
+    const next = root.querySelector('.car-next');
+    let idx = 0;
+
+    function fit() { viewport.style.height = slides[idx].offsetHeight + 'px'; }
+    function go(i) {
+      idx = (i + slides.length) % slides.length;
+      track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+      slides.forEach((s, k) => s.classList.toggle('is-active', k === idx));
+      dots.forEach((d, k) => { d.classList.toggle('is-active', k === idx); d.setAttribute('aria-selected', k === idx); });
+      fit();
+    }
+    prev.addEventListener('click', () => go(idx - 1));
+    next.addEventListener('click', () => go(idx + 1));
+    dots.forEach((d, k) => d.addEventListener('click', () => go(k)));
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(idx - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(idx + 1); }
+    });
+    // swipe
+    let x0 = null;
+    viewport.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    viewport.addEventListener('touchend', (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+    });
+    window.addEventListener('resize', fit);
+    root.querySelectorAll('img').forEach((im) => im.addEventListener('load', fit));
+    go(0);
+  })();
+</script>
+</body>
+</html>
