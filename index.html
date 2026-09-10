@@ -207,14 +207,15 @@
         </div>
           </div>
           <div class="car-slide" role="group" aria-label="2 of 2">
-            <p class="finding">For the four speech-capable models, Audio-Only alone carries 35–45% of assignable unsafe outputs, on par with Video-Only, while AV-Both and AV-Joint add another 11–20%. JavisDiT++ is the exception: 87% of its unsafe outputs are Video-Only, consistent with its limited speech generation.</p>
+            <p class="finding">For the four models that generate intelligible speech, audio-related sources account for 54.5–59.3% of assignable unsafe outputs, outnumbering Video-Only in every case, and Audio-Only alone makes up 63–76% of that share. JavisDiT++ inverts the pattern at 87.1% Video-Only, consistent with its limited speech generation.</p>
             <figure class="fig card">
               <img src="static/fig4_risk_source.svg" alt="Heatmap of per-model risk-source composition among Full-AV unsafe outputs: Video-Only, Audio-Only, AV-Both, and AV-Joint shares per model.">
               <figcaption>
                 <span class="figno">Figure 4</span>
-                <strong>Per-model risk-source composition among Full-AV unsafe outputs.</strong>
-                Each cell is the share carried by Video-Only, Audio-Only, AV-Both, or AV-Joint (unsafe
-                together yet safe in each single view); rows sum to 100%.
+                <strong>Risk-source composition per model.</strong> The left bar
+                splits Full-AV unsafe outputs into Video-Only and audio-related
+                (Audio-Only + AV-Both + AV-Joint); the right bar decomposes the
+                audio-related into these three sources.
               </figcaption>
             </figure>
           </div>
