@@ -97,6 +97,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .btn:hover { border-color: var(--text); transform: translateY(-1px); box-shadow: 0 4px 14px -6px rgba(20, 20, 30, .25); }
 .btn svg { width: 17px; height: 17px; flex: none; }
+.btn-mark { width: auto; height: 15px; flex: none; }
 .btn .emoji { font-size: 16px; line-height: 1; }
 .btn-primary { background: var(--text); color: #fff; border-color: var(--text); }
 .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
