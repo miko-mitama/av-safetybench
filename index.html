@@ -155,7 +155,7 @@
       <div class="car-viewport">
         <div class="car-track">
           <div class="car-slide" role="group" aria-label="1 of 2">
-            <p class="finding">Speech-borne categories (Targeted Abuse, Fabricated Communication, Deceptive Solicitation, Identity-Claim Attribution) rank among the most unsafe for every model that generates intelligible speech, and drop to near zero for JavisDiT++, which produces little speech. Gemini and human rates agree within roughly ten points in every cell.</p>
+            <p class="finding">Speech-dependent categories (Targeted Abuse, Fabricated Communication, Deceptive Solicitation, Identity-Claim Attribution) reach 36.7–83.3% across the four models that generate intelligible speech, and fall to near zero for JavisDiT++, which often fails to produce it. Agreement with human annotators is substantial: mean Cohen's κ is 0.762, above 0.75 in 10 of the 13 categories.</p>
         <div class="card table-card">
           <div class="table-wrap">
             <table class="results">
@@ -167,7 +167,7 @@
                   <th colspan="2" class="grp">JavisDiT++</th>
                   <th colspan="2" class="grp">NAVA</th>
                   <th colspan="2" class="grp">daVinci</th>
-                  <th rowspan="2" class="cc">CC&thinsp;&uarr;</th>
+                  <th rowspan="2" class="cc">&kappa;&thinsp;&uarr;</th>
                 </tr>
                 <tr>
                   <th class="g">Gemini</th><th>Human</th>
@@ -178,32 +178,31 @@
                 </tr>
               </thead>
               <tbody>
-                <tr><td class="cat">1. Explicit Sexual</td><td class="g">41.7</td><td>48.3</td><td class="g">70.0</td><td>71.7</td><td class="g">70.0</td><td>76.7</td><td class="g">48.3</td><td>53.3</td><td class="g">71.7</td><td>78.3</td><td class="cc">.791</td></tr>
-                <tr><td class="cat">2. Suggestive Sexualization</td><td class="g">53.3</td><td>61.7</td><td class="g">40.0</td><td>41.7</td><td class="g">40.0</td><td>50.0</td><td class="g">40.0</td><td>45.0</td><td class="g">68.3</td><td>75.0</td><td class="cc">.787</td></tr>
-                <tr><td class="cat">3. Physical Harm</td><td class="g">45.0</td><td>48.3</td><td class="g">38.3</td><td>40.0</td><td class="g">45.0</td><td>50.0</td><td class="g">50.0</td><td>48.3</td><td class="g">51.7</td><td>56.7</td><td class="cc">.827</td></tr>
-                <tr><td class="cat">4. Graphic Injury</td><td class="g">76.7</td><td>83.3</td><td class="g">36.7</td><td>38.3</td><td class="g">51.7</td><td>56.7</td><td class="g">60.0</td><td>60.0</td><td class="g">81.7</td><td>85.0</td><td class="cc">.802</td></tr>
-                <tr><td class="cat">5. Likeness Misuse</td><td class="g">26.7</td><td>18.3</td><td class="g">28.3</td><td>26.7</td><td class="g">18.3</td><td>15.0</td><td class="g">20.0</td><td>20.0</td><td class="g">21.7</td><td>20.0</td><td class="cc">.697</td></tr>
-                <tr><td class="cat">6. IP Misuse</td><td class="g">86.7</td><td>90.0</td><td class="g">88.3</td><td>85.0</td><td class="g">76.7</td><td>71.7</td><td class="g">51.7</td><td>55.0</td><td class="g">41.7</td><td>45.0</td><td class="cc">.789</td></tr>
-                <tr><td class="cat">7. Targeted Abuse</td><td class="g">66.7</td><td>73.3</td><td class="g">66.7</td><td>71.7</td><td class="g">1.7</td><td>3.3</td><td class="g">63.3</td><td>70.0</td><td class="g">60.0</td><td>61.7</td><td class="cc">.782</td></tr>
-                <tr><td class="cat">8. Fabricated Communication</td><td class="g">45.0</td><td>40.0</td><td class="g">43.3</td><td>50.0</td><td class="g">0.0</td><td>0.0</td><td class="g">36.7</td><td>33.3</td><td class="g">45.0</td><td>50.0</td><td class="cc">.764</td></tr>
-                <tr><td class="cat">9. Deceptive Solicitation</td><td class="g">78.3</td><td>75.0</td><td class="g">83.3</td><td>81.7</td><td class="g">0.0</td><td>0.0</td><td class="g">61.7</td><td>63.3</td><td class="g">76.7</td><td>71.7</td><td class="cc">.787</td></tr>
-                <tr><td class="cat">10. Illegal Activities</td><td class="g">25.0</td><td>21.7</td><td class="g">20.0</td><td>21.7</td><td class="g">13.3</td><td>16.7</td><td class="g">15.0</td><td>20.0</td><td class="g">16.7</td><td>20.0</td><td class="cc">.720</td></tr>
-                <tr><td class="cat">11. Temporal Harm</td><td class="g">6.7</td><td>11.7</td><td class="g">3.3</td><td>8.3</td><td class="g">3.3</td><td>1.7</td><td class="g">0.0</td><td>0.0</td><td class="g">5.0</td><td>5.0</td><td class="cc">.664</td></tr>
-                <tr><td class="cat">12. Cross-Modal Harm</td><td class="g">28.3</td><td>36.7</td><td class="g">28.3</td><td>31.7</td><td class="g">6.7</td><td>10.0</td><td class="g">8.3</td><td>8.3</td><td class="g">21.7</td><td>30.0</td><td class="cc">.767</td></tr>
-                <tr><td class="cat">13. Identity-Claim Attribution</td><td class="g">61.7</td><td>65.0</td><td class="g">48.3</td><td>50.0</td><td class="g">0.0</td><td>0.0</td><td class="g">53.3</td><td>50.0</td><td class="g">45.0</td><td>51.7</td><td class="cc">.775</td></tr>
+                <tr><td class="cat">1. Explicit Sexual</td><td class="g">41.7</td><td>48.3</td><td class="g">70.0</td><td>71.7</td><td class="g">70.0</td><td>76.7</td><td class="g">48.3</td><td>53.3</td><td class="g">71.7</td><td>78.3</td><td class="cc">0.786</td></tr>
+                <tr><td class="cat">2. Suggestive Sexualization</td><td class="g">53.3</td><td>61.7</td><td class="g">40.0</td><td>41.7</td><td class="g">40.0</td><td>50.0</td><td class="g">40.0</td><td>45.0</td><td class="g">68.3</td><td>75.0</td><td class="cc">0.779</td></tr>
+                <tr><td class="cat">3. Physical Harm</td><td class="g">45.0</td><td>48.3</td><td class="g">38.3</td><td>40.0</td><td class="g">45.0</td><td>50.0</td><td class="g">50.0</td><td>48.3</td><td class="g">51.7</td><td>56.7</td><td class="cc">0.826</td></tr>
+                <tr><td class="cat">4. Graphic Injury</td><td class="g">76.7</td><td>83.3</td><td class="g">36.7</td><td>38.3</td><td class="g">51.7</td><td>56.7</td><td class="g">60.0</td><td>60.0</td><td class="g">81.7</td><td>85.0</td><td class="cc">0.800</td></tr>
+                <tr><td class="cat">5. Likeness Misuse</td><td class="g">26.7</td><td>18.3</td><td class="g">28.3</td><td>26.7</td><td class="g">18.3</td><td>15.0</td><td class="g">20.0</td><td>20.0</td><td class="g">21.7</td><td>20.0</td><td class="cc">0.694</td></tr>
+                <tr><td class="cat">6. IP Misuse</td><td class="g">86.7</td><td>90.0</td><td class="g">88.3</td><td>85.0</td><td class="g">76.7</td><td>71.7</td><td class="g">51.7</td><td>55.0</td><td class="g">41.7</td><td>45.0</td><td class="cc">0.789</td></tr>
+                <tr><td class="cat">7. Targeted Abuse</td><td class="g">66.7</td><td>73.3</td><td class="g">66.7</td><td>71.7</td><td class="g">1.7</td><td>3.3</td><td class="g">63.3</td><td>70.0</td><td class="g">60.0</td><td>61.7</td><td class="cc">0.778</td></tr>
+                <tr><td class="cat">8. Fabricated Communication</td><td class="g">45.0</td><td>40.0</td><td class="g">43.3</td><td>50.0</td><td class="g">0.0</td><td>0.0</td><td class="g">36.7</td><td>33.3</td><td class="g">45.0</td><td>50.0</td><td class="cc">0.763</td></tr>
+                <tr><td class="cat">9. Deceptive Solicitation</td><td class="g">78.3</td><td>75.0</td><td class="g">83.3</td><td>81.7</td><td class="g">0.0</td><td>0.0</td><td class="g">61.7</td><td>63.3</td><td class="g">76.7</td><td>71.7</td><td class="cc">0.783</td></tr>
+                <tr><td class="cat">10. Illegal Activities</td><td class="g">25.0</td><td>21.7</td><td class="g">20.0</td><td>21.7</td><td class="g">13.3</td><td>16.7</td><td class="g">15.0</td><td>20.0</td><td class="g">16.7</td><td>20.0</td><td class="cc">0.719</td></tr>
+                <tr><td class="cat">11. Temporal Harm</td><td class="g">6.7</td><td>11.7</td><td class="g">3.3</td><td>8.3</td><td class="g">3.3</td><td>1.7</td><td class="g">0.0</td><td>0.0</td><td class="g">5.0</td><td>5.0</td><td class="cc">0.652</td></tr>
+                <tr><td class="cat">12. Cross-Modal Harm</td><td class="g">28.3</td><td>36.7</td><td class="g">28.3</td><td>31.7</td><td class="g">6.7</td><td>10.0</td><td class="g">8.3</td><td>8.3</td><td class="g">21.7</td><td>30.0</td><td class="cc">0.760</td></tr>
+                <tr><td class="cat">13. Identity-Claim Attribution</td><td class="g">61.7</td><td>65.0</td><td class="g">48.3</td><td>50.0</td><td class="g">0.0</td><td>0.0</td><td class="g">53.3</td><td>50.0</td><td class="g">45.0</td><td>51.7</td><td class="cc">0.775</td></tr>
               </tbody>
               <tfoot>
-                <tr><td class="cat">Average</td><td class="g">49.4</td><td>51.8</td><td class="g">45.8</td><td>47.6</td><td class="g">25.1</td><td>27.1</td><td class="g">39.1</td><td>40.5</td><td class="g">46.7</td><td>50.0</td><td class="cc">.766</td></tr>
+                <tr><td class="cat">Average</td><td class="g">49.4</td><td>51.8</td><td class="g">45.8</td><td>47.6</td><td class="g">25.1</td><td>27.1</td><td class="g">39.1</td><td>40.5</td><td class="g">46.7</td><td>50.0</td><td class="cc">0.762</td></tr>
               </tfoot>
             </table>
           </div>
           <p class="caption">
             <span class="figno">Table 1</span>
-            <strong>Full-AV Unsafe Rate (FUR) across five T2AV models.</strong>
-            Category-wise FUR (= unsafe / (unsafe + safe + unclear), %) on the 780-prompt tinyset, judged by
-            Gemini 3.5 Flash. Human FUR and the Gemini–human correlation coefficient (CC) are reported per
-            category.
-          </p>
+            <strong>Full-AV Unsafe Rate (FUR &darr;) across five T2AV models.</strong>
+        Per-category FUR (%) under Gemini and human judgments. &kappa; is Cohen's &kappa;
+        between the automated and human clip-level labels within each category.
+      </p>
         </div>
           </div>
           <div class="car-slide" role="group" aria-label="2 of 2">
