@@ -233,6 +233,21 @@
     </div>
   </section>
 
+  <!-- Examples -->
+  <section class="container">
+    <div class="sec-head">
+      <p class="eyebrow">Examples</p>
+      <h2>Example generations by risk category</h2>
+      <p class="lead">These samples contain unsafe audiovisual content. Each clip stays hidden until you
+        choose to view it, and categories 1&ndash;4 are fully blurred.</p>
+    </div>
+
+    <div class="gallery" id="gallery">
+      <div class="cat-chips" role="tablist" aria-label="Risk categories"></div>
+      <div class="sample-grid" role="tabpanel"></div>
+    </div>
+  </section>
+
   <!-- News -->
   <section class="container news-sec">
     <div class="news">
@@ -272,7 +287,7 @@
 </footer>
 
 <script>
-  document.querySelector('.copy').addEventListener('click', async (e) => {
+  document.querySelector('.copy')?.addEventListener('click', async (e) => {
     const btn = e.currentTarget;
     const el = document.getElementById(btn.dataset.copy);
     try {
@@ -323,6 +338,100 @@
     window.addEventListener('resize', fit);
     root.querySelectorAll('img').forEach((im) => im.addEventListener('load', fit));
     go(0);
+  })();
+  // Example gallery: every clip is gated behind a blurred poster until the viewer clicks.
+  (function () {
+    const root = document.getElementById('gallery');
+    if (!root) return;
+    const CATS = [
+      { n: 1,  name: 'Explicit Sexual',            axis: 'dep',  ids: ['C001_123', 'C001_028', 'C001_069'] },
+      { n: 2,  name: 'Suggestive Sexualization',   axis: 'dep',  ids: ['C002_186', 'C002_004', 'C002_056'] },
+      { n: 3,  name: 'Physical Harm',              axis: 'dep',  ids: ['C003_046', 'C003_181', 'C003_227'] },
+      { n: 4,  name: 'Graphic Injury',             axis: 'dep',  ids: ['C004_040', 'C004_020', 'C004_055'] },
+      { n: 5,  name: 'Likeness Misuse',            axis: 'id',   ids: ['C005_245', 'C005_110', 'C005_162'] },
+      { n: 6,  name: 'IP Misuse',                  axis: 'id',   ids: ['C006_023', 'C006_017', 'C006_036'] },
+      { n: 7,  name: 'Targeted Abuse',             axis: 'soc',  ids: ['C007_188', 'C007_003', 'C007_014'] },
+      { n: 8,  name: 'Fabricated Communication',   axis: 'soc',  ids: ['C008_070', 'C008_012', 'C008_020'] },
+      { n: 9,  name: 'Deceptive Solicitation',     axis: 'soc',  ids: ['C009_295', 'C009_012', 'C009_245'] },
+      { n: 10, name: 'Illegal Activities',         axis: 'soc',  ids: ['C010_137', 'C010_212', 'C010_375'] },
+      { n: 11, name: 'Temporal Harm',              axis: 't2av', ids: ['C011_166', 'C011_010', 'C011_191'] },
+      { n: 12, name: 'Cross-Modal Harm',           axis: 't2av', ids: ['C012_379', 'C012_022', 'C012_101'] },
+      { n: 13, name: 'Identity-Claim Attribution', axis: 't2av', ids: ['C013_262', 'C013_020', 'C013_113'] },
+    ];
+    const BASE = 'static/samples/';
+    const EYE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>';
+    const chips = root.querySelector('.cat-chips');
+    const grid = root.querySelector('.sample-grid');
+    const revealed = new Set();
+
+    CATS.forEach((c, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'cat-chip';
+      b.setAttribute('role', 'tab');
+      b.dataset.axis = c.axis;
+      b.innerHTML = '<span class="dot"></span>' + c.n + '. ' + c.name;
+      b.addEventListener('click', () => select(i));
+      chips.appendChild(b);
+    });
+
+    function makeVideo(id, autoplay) {
+      const v = document.createElement('video');
+      v.className = 'sample-video';
+      v.controls = true;
+      v.playsInline = true;
+      v.preload = autoplay ? 'auto' : 'metadata';
+      v.src = BASE + id + '.mp4';
+      v.addEventListener('play', () => {
+        grid.querySelectorAll('video').forEach((o) => { if (o !== v) o.pause(); });
+      });
+      if (autoplay) v.play().catch(() => {});
+      return v;
+    }
+
+    function card(cat, id, k) {
+      const fig = document.createElement('figure');
+      fig.className = 'sample';
+      const media = document.createElement('div');
+      media.className = 'sample-media';
+      if (revealed.has(id)) {
+        media.appendChild(makeVideo(id, false));
+      } else {
+        const img = document.createElement('img');
+        img.className = 'sample-poster';
+        img.src = BASE + id + '.jpg';
+        img.alt = '';
+        img.loading = 'lazy';
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'sample-reveal';
+        btn.innerHTML = '<span class="pill">' + EYE + 'View sample</span><span class="warn">Contains unsafe content</span>';
+        btn.setAttribute('aria-label', 'View ' + cat.name + ' example ' + (k + 1) + ', contains unsafe content');
+        btn.addEventListener('click', () => {
+          revealed.add(id);
+          const v = makeVideo(id, true);
+          media.replaceChildren(v);
+          v.focus();
+        });
+        media.append(img, btn);
+      }
+      const cap = document.createElement('figcaption');
+      cap.innerHTML = 'Example ' + (k + 1) + (cat.n <= 4 ? '<span class="tag">Blurred</span>' : '');
+      fig.append(media, cap);
+      return fig;
+    }
+
+    function select(i) {
+      [...chips.children].forEach((b, j) => {
+        b.classList.toggle('is-active', j === i);
+        b.setAttribute('aria-selected', j === i);
+      });
+      grid.querySelectorAll('video').forEach((v) => v.pause());
+      const cat = CATS[i];
+      grid.replaceChildren(...cat.ids.map((id, k) => card(cat, id, k)));
+    }
+
+    select(0);
   })();
 </script>
 </body>
