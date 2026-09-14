@@ -368,14 +368,18 @@ main > section.news-sec { padding-top: 80px; }
 .sample-reveal .pill svg { width: 17px; height: 17px; }
 .sample-reveal .warn { font-size: 12px; font-weight: 500; letter-spacing: .02em; color: rgba(255, 255, 255, .88); }
 .sample-reveal:focus-visible { outline: 3px solid rgba(168, 58, 50, .6); outline-offset: -3px; }
-.sample figcaption {
-  display: flex; align-items: center; gap: 8px;
-  margin-top: 10px; font-size: 14px; font-weight: 500; color: var(--text-2);
+.sample figcaption { margin-top: 12px; }
+.prompt-label {
+  display: block; margin-bottom: 4px;
+  font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted);
 }
-.sample .tag {
-  font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
-  color: var(--muted); background: var(--shade); border: 1px solid var(--line);
-  border-radius: 999px; padding: 1px 8px;
+.prompt { margin: 0; font-size: 14px; line-height: 1.6; color: var(--text-2); transition: filter .25s; }
+.prompt.is-gated { filter: blur(5px); user-select: none; }
+.media-tag {
+  position: absolute; top: 10px; left: 10px; z-index: 2; pointer-events: none;
+  font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  color: #fff; background: rgba(0, 0, 0, .55); border-radius: 999px; padding: 2px 8px;
 }
 @media (max-width: 600px) {
   .sample-grid { grid-template-columns: 1fr; }
