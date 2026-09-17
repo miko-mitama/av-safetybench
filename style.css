@@ -83,6 +83,8 @@ img { max-width: 100%; height: auto; display: block; }
 .affiliation { margin: 8px 0 0; color: var(--text-2); font-size: 16px; }
 .affiliation a { color: var(--text-2); font-weight: 500; transition: color .15s; }
 .affiliation a:hover { color: var(--accent); }
+.corr-note { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+.corr-note sup { font-size: .8em; margin-right: 2px; }
 
 .links { margin: 36px 0 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
 .btn {
